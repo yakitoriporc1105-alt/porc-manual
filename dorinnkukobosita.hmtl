@@ -1,1 +1,299 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ドリンクこぼし対応ナビ（現場用）</title>
+  <style>
+    :root { --max: 700px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #fef9f3 0%, #f5f0ff 50%, #f0f7ff 100%); min-height: 100vh; }
+    header { padding: 20px 16px; background: linear-gradient(90deg, #f5c6b3, #e8b4d8); text-align: center; box-shadow: 0 2px 10px rgba(232,180,160,0.3); }
+    h1 { margin: 0; font-size: 20px; color: #5a4a52; }
+    main { max-width: var(--max); margin: 0 auto; padding: 16px; }
+    
+    /* ステップカード */
+    .step { background: #fff; border-radius: 16px; margin: 16px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .step-header { padding: 20px; display: flex; align-items: flex-start; gap: 16px; }
+    .step-num { font-size: 48px; font-weight: bold; color: #e8e8e8; line-height: 1; min-width: 50px; }
+    .step-title { font-size: 22px; font-weight: bold; color: #2a3a4a; line-height: 1.4; }
+    .step-subtitle { font-size: 14px; color: #8a9aaa; margin-top: 4px; }
+    
+    /* ステップ1 - 紺色背景 */
+    .step-1 .step-header { background: #1a2a4a; }
+    .step-1 .step-num { color: rgba(255,255,255,0.2); }
+    .step-1 .step-title { color: #fff; }
+    
+    /* メッセージボックス */
+    .message-box { padding: 20px; text-align: center; }
+    .message-box.dark { background: #1a2a4a; color: #fff; }
+    .message-main { font-size: 28px; font-weight: bold; line-height: 1.5; }
+    
+    /* チェックリスト */
+    .checklist { padding: 20px; background: #fafafa; }
+    .check-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin: 8px 0; background: #fff; border-radius: 10px; }
+    .check-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
+    .check-icon.yes { background: #e8f8e8; color: #4a9a4a; }
+    .check-icon.no { background: #ffe8e8; color: #c85a5a; }
+    
+    /* 分岐ボックス */
+    .branch-box { background: #e8f4ff; border-radius: 12px; margin: 16px 20px; padding: 20px; }
+    .branch-question { font-size: 18px; font-weight: bold; text-align: center; color: #2a4a6a; margin-bottom: 16px; }
+    .branch-options { display: flex; gap: 12px; }
+    .branch-option { flex: 1; background: #fff; border-radius: 10px; padding: 16px; text-align: center; border: 2px solid #d0e0f0; }
+    .branch-label { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+    .branch-label.yes { color: #3a7aca; }
+    .branch-label.no { color: #6a7a8a; }
+    .branch-action { font-size: 14px; color: #555; }
+    
+    /* 判断ボックス */
+    .judgment-box { padding: 20px; }
+    .judgment-item { border-radius: 10px; padding: 16px; margin: 10px 0; }
+    .judgment-item.store { background: #fff0f0; border-left: 4px solid #e85a5a; }
+    .judgment-item.customer { background: #f8f8f8; border-left: 4px solid #aaa; }
+    .judgment-label { font-size: 14px; font-weight: bold; margin-bottom: 6px; }
+    .judgment-label.store { color: #c84a4a; }
+    .judgment-label.customer { color: #6a7a8a; }
+    .judgment-action { color: #333; }
+    
+    /* 警告ボックス */
+    .warning-box { background: #fff5f5; border-radius: 12px; margin: 16px 20px; padding: 20px; text-align: center; }
+    .warning-icon { font-size: 40px; margin-bottom: 10px; }
+    .warning-title { font-size: 24px; font-weight: bold; color: #c84a4a; }
+    .warning-list { background: #fff0f0; border-radius: 10px; padding: 16px; margin-top: 16px; text-align: left; }
+    .warning-list li { margin: 8px 0; color: #333; }
+    
+    /* 注意ボックス */
+    .caution-box { background: #fffbe8; border: 2px solid #f0d860; border-radius: 12px; margin: 16px 20px; padding: 20px; text-align: center; }
+    .caution-text { font-size: 18px; color: #5a5040; }
+    .caution-highlight { font-size: 28px; font-weight: bold; color: #c84a4a; display: block; margin: 8px 0; }
+    
+    /* 社員対応フロー */
+    .flow-box { background: #1a2a4a; border-radius: 12px; margin: 16px 20px; padding: 20px; }
+    .flow-item { display: flex; align-items: flex-start; gap: 12px; margin: 12px 0; }
+    .flow-num { background: #c84a4a; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; }
+    .flow-text { color: #fff; font-size: 16px; }
+    .flow-note { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; margin: 12px 0 12px 40px; }
+    .flow-note-warn { color: #ffa0a0; font-size: 13px; margin-bottom: 8px; }
+    .flow-note-text { color: #fff; font-size: 14px; line-height: 1.6; }
+    
+    /* 最終ステップ */
+    .final-box { padding: 30px 20px; text-align: center; }
+    .final-message { font-size: 26px; font-weight: bold; color: #2a4a6a; line-height: 1.5; }
+    .final-icon { margin: 20px 0; }
+    .final-icon svg { width: 80px; height: 80px; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; }
+    
+    /* 目次 */
+    .toc { background: rgba(255,255,255,0.9); border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 3px 12px rgba(0,0,0,0.05); }
+    .toc-title { font-weight: bold; color: #7a6a72; margin-bottom: 10px; font-size: 14px; }
+    .toc-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-item { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border-radius: 20px; font-size: 12px; color: #5a6a7a; border: 1px solid #e0e8f0; }
+    .toc-num { background: #e8e8e8; color: #666; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ドリンクこぼし対応ナビ（現場用）</h1>
+  </header>
 
+  <main>
+    <nav class="toc">
+      <div class="toc-title">対応フロー</div>
+      <div class="toc-list">
+        <span class="toc-item"><span class="toc-num">1</span>謝罪</span>
+        <span class="toc-item"><span class="toc-num">2</span>お客様対応</span>
+        <span class="toc-item"><span class="toc-num">3</span>荷物対応</span>
+        <span class="toc-item"><span class="toc-num">4</span>ドリンク判断</span>
+        <span class="toc-item"><span class="toc-num">5</span>報告</span>
+        <span class="toc-item"><span class="toc-num">6</span>共有</span>
+        <span class="toc-item"><span class="toc-num">7</span>怒っている場合</span>
+        <span class="toc-item"><span class="toc-num">8</span>会計時</span>
+      </div>
+    </nav>
+
+    <!-- ステップ1 -->
+    <div class="step step-1">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">申し訳ございません。<br>すぐにお拭き致します。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ステップ2 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">お客様の体には<br>触れない</div>
+        </div>
+      </div>
+      <div class="checklist">
+        <div class="check-item">
+          <span class="check-icon yes">✓</span>
+          <span>タオルまたはおしぼりを渡す</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon no">✕</span>
+          <span>体や服には触れない</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon yes">✓</span>
+          <span>お召し物への気遣いの言葉をかける</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ステップ3 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">荷物・スマートフォン</div>
+        </div>
+      </div>
+      <div class="branch-box">
+        <div class="branch-question">「私が拭いても<br>よろしいでしょうか」</div>
+        <div class="branch-options">
+          <div class="branch-option">
+            <div class="branch-label yes">YES</div>
+            <div class="branch-action">「お手元失礼いたします」<br>と伝えて拭く</div>
+          </div>
+          <div class="branch-option">
+            <div class="branch-label no">NO</div>
+            <div class="branch-action">タオルまたは<br>おしぼりを渡す</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ステップ4 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">ドリンク対応の判断</div>
+        </div>
+      </div>
+      <div class="judgment-box">
+        <div class="judgment-item store">
+          <div class="judgment-label store">▼ 店側のミス</div>
+          <div class="judgment-action">新しいドリンクを無料で提供</div>
+        </div>
+        <div class="judgment-item customer">
+          <div class="judgment-label customer">▼ お客様ご自身</div>
+          <div class="judgment-action">「おかわりをお入れしますか？」と確認<br>→ 有償で提供</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ステップ5 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">必ず社員または<br>店長に報告</div>
+        </div>
+      </div>
+      <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <div class="warning-list">
+          <ul style="margin: 0; padding-left: 20px;">
+            <li>状況</li>
+            <li>お客様の気分</li>
+            <li>濡れた範囲</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ステップ6 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">6</div>
+        <div>
+          <div class="step-title">スタッフ全員に共有</div>
+        </div>
+      </div>
+      <div class="caution-box">
+        <div class="caution-text">二度目の粗相は</div>
+        <span class="caution-highlight">クレーム</span>
+        <div class="caution-text">につながる</div>
+      </div>
+    </div>
+
+    <!-- ステップ7 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">7</div>
+        <div>
+          <div class="step-title">お客様が怒っている場合</div>
+          <div class="step-subtitle">（社員対応フロー）</div>
+        </div>
+      </div>
+      <div class="flow-box">
+        <div class="flow-item">
+          <span class="flow-num">1</span>
+          <span class="flow-text">引き継ぐ</span>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">2</span>
+          <span class="flow-text">気持ちを受け止める</span>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">3</span>
+          <span class="flow-text">新しいドリンクが提供出来ているか確認</span>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">4</span>
+          <span class="flow-text">クリーニング対応（状況を見て判断）</span>
+        </div>
+        <div class="flow-note">
+          <div class="flow-note-warn">※「全額」「補償」という言葉は使わない</div>
+          <div class="flow-note-text">「お召し物の件ですが、<br>クリーニングに出される際は、<br>当店で対応させていただきます。」</div>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">5</span>
+          <span class="flow-text">名前・連絡先を伺う</span>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">6</span>
+          <span class="flow-text">全スタッフに共有</span>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">7</span>
+          <span class="flow-text">最後の謝罪</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ステップ8 -->
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">8</div>
+        <div>
+          <div class="step-title">会計時</div>
+        </div>
+      </div>
+      <div class="final-box">
+        <div class="final-message">「本日はご迷惑を<br>おかけいたしました。」</div>
+        <div class="final-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="30" r="15" fill="#2a4a6a"/>
+            <path d="M30 90 L30 55 Q30 45 50 45 Q70 45 70 55 L70 90" stroke="#2a4a6a" stroke-width="4" fill="none"/>
+            <path d="M50 45 L50 70" stroke="#2a4a6a" stroke-width="4"/>
+            <path d="M35 60 L50 75 L65 60" stroke="#2a4a6a" stroke-width="4" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      焼とりporc｜現場用マニュアル
+    </footer>
+  </main>
+</body>
+</html>
