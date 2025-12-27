@@ -1,1 +1,340 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>食中毒対応マニュアル｜焼とりporc</title>
+  <style>
+    :root { --max: 900px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #fff5f5 0%, #fff8f8 50%, #fffafa 100%); min-height: 100vh; color: #333; }
+    
+    header { padding: 32px 16px; background: linear-gradient(135deg, #e85a5a, #f07070); text-align: center; color: #fff; }
+    h1 { margin: 0 0 4px 0; font-size: 24px; font-weight: bold; }
+    
+    main { max-width: var(--max); margin: 0 auto; padding: 16px; }
+    
+    /* セクションカード */
+    .section { background: #fff; border-radius: 16px; margin: 16px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border-left: 4px solid #e85a5a; }
+    .section-header { padding: 16px 20px; font-size: 18px; font-weight: bold; color: #c85050; border-bottom: 1px solid #f0f0f0; }
+    .section-content { padding: 20px; }
+    
+    /* サブタイトル */
+    .subtitle { font-weight: bold; color: #5a5a5a; margin-bottom: 12px; }
+    
+    /* 電話例ボックス */
+    .phone-example-box { background: linear-gradient(135deg, #e8f4ff, #f0f8ff); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .phone-example-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #4a7aaa; font-weight: bold; }
+    .phone-example-item { background: #fff; border-radius: 8px; padding: 12px 14px; margin: 8px 0; color: #4a5a6a; font-size: 14px; line-height: 1.7; border-left: 3px solid #8ab8dc; }
+    
+    /* アルバイト対応ボックス */
+    .baito-box { background: linear-gradient(135deg, #fff8e8, #fffaf0); border: 2px solid #f0d080; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .baito-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .baito-icon { font-size: 16px; }
+    .baito-title { font-weight: bold; color: #9a7a3a; font-size: 16px; }
+    .baito-alert { background: #fff0e0; color: #c85a3a; padding: 10px 14px; border-radius: 8px; font-weight: bold; font-size: 14px; margin-top: 8px; }
+    
+    /* 会話フローボックス */
+    .flow-box { background: #f8f9fc; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .flow-title { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; color: #5a6a8a; font-weight: bold; }
+    .flow-item { margin: 12px 0; }
+    .flow-label { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-bottom: 6px; }
+    .flow-label.customer { background: #ffe0e0; color: #c85a5a; }
+    .flow-label.staff { background: #e0f0e0; color: #4a8a4a; }
+    .flow-label.baito { background: #e0e8ff; color: #5a6aaa; }
+    .flow-text { background: #fff; border-radius: 8px; padding: 12px 14px; color: #4a5a6a; font-size: 14px; line-height: 1.7; }
+    .flow-arrow { text-align: center; color: #aaa; font-size: 18px; margin: 8px 0; }
+    .flow-note { background: #f0f8ff; border-radius: 8px; padding: 12px 14px; color: #5a7a9a; font-size: 13px; margin-top: 12px; }
+    
+    /* 注意ボックス */
+    .caution-box { background: linear-gradient(135deg, #fff0f0, #fff5f5); border: 1px solid #f0c0c0; border-radius: 10px; padding: 16px; margin: 16px 0; }
+    .caution-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .caution-icon { font-size: 16px; }
+    .caution-title { font-weight: bold; color: #c85a5a; font-size: 14px; }
+    .caution-text { color: #6a4a4a; font-size: 14px; }
+    
+    /* NG/OK リスト */
+    .ng-list { margin: 8px 0; padding: 0; list-style: none; }
+    .ng-list li { padding: 6px 0; font-size: 14px; }
+    .ng-list li.ng { color: #c85a5a; }
+    .ng-list li.ok { color: #4a8a4a; }
+    
+    /* 警告ボックス */
+    .warning-box { background: linear-gradient(135deg, #fff0f0, #fff5f5); border: 2px solid #e0a0a0; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .warning-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .warning-icon { font-size: 18px; }
+    .warning-title { font-weight: bold; color: #c85a5a; font-size: 16px; }
+    .warning-list { margin: 0; padding-left: 20px; color: #6a4a4a; }
+    .warning-list li { margin: 8px 0; font-size: 14px; }
+    .warning-note { color: #8a6a6a; font-size: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f0d0d0; }
+    
+    /* 聞き取りシート */
+    .sheet-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .sheet-table th, .sheet-table td { border: 1px solid #e0e0e0; padding: 10px 12px; text-align: left; font-size: 14px; }
+    .sheet-table th { background: #f8f9fc; color: #5a6a8a; font-weight: bold; width: 35%; }
+    .sheet-table td { background: #fff; color: #666; }
+    
+    /* チェックリスト */
+    .checklist { margin: 12px 0; padding: 0; list-style: none; }
+    .checklist li { padding: 8px 0; font-size: 14px; color: #4a5a6a; display: flex; align-items: flex-start; gap: 8px; }
+    .checklist li::before { content: "✅"; flex-shrink: 0; }
+    
+    /* ポイントまとめ */
+    .summary-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .summary-table th, .summary-table td { border: 1px solid #e0e0e0; padding: 12px 14px; text-align: left; font-size: 14px; }
+    .summary-table th { background: #f0f8ff; color: #4a6a8a; font-weight: bold; width: 30%; }
+    .summary-table td { background: #fff; color: #4a5a6a; }
+    
+    /* 重要テキスト */
+    .highlight { background: #fff0e0; padding: 10px 14px; border-radius: 8px; color: #8a5a3a; font-weight: bold; margin: 12px 0; font-size: 14px; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>食中毒対応フローチャート</h1>
+  </header>
 
+  <main>
+    <!-- 1. 電話が鳴ったら -->
+    <div class="section">
+      <div class="section-header">1. 電話が鳴ったら</div>
+      <div class="section-content">
+        <p class="subtitle">まずは深呼吸。焦らないこと。</p>
+        
+        <div class="phone-example-box">
+          <div class="phone-example-header">
+            <span>📞</span>
+            <span>実際にかかってくる電話の例</span>
+          </div>
+          <div class="phone-example-item">
+            「○日にそちらで食事させてもらったんですけど、翌日から腹痛になって、連れも腹痛で病院に行ったら食中毒と言われたんですけど、何か対応してもらえますか？」
+          </div>
+          <div class="phone-example-item">
+            「先日そちらで食べたんですが、その後お腹を壊して…病院で食中毒だと診断されました」
+          </div>
+          <div class="phone-example-item">
+            「○日に家族で行ったんですけど、全員具合が悪くなって。どうしてくれるんですか？」
+          </div>
+        </div>
+        
+        <div class="baito-box">
+          <div class="baito-header">
+            <span class="baito-icon">📌</span>
+            <span class="baito-title">アルバイトが電話を受けた場合</span>
+          </div>
+          <div class="baito-alert">※食中毒の連絡とわかったら、すぐに社員に電話を代わってください！</div>
+        </div>
+        
+        <div class="flow-box">
+          <div class="flow-title">
+            <span>💬</span>
+            <span>社員に代わるときの流れ</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-label customer">お客様</span>
+            <div class="flow-text">「食中毒になったんですけど…」「病院で食中毒と言われて…」など</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label baito">アルバイト</span>
+            <div class="flow-text">「ご連絡いただきありがとうございます。担当の者におつなぎいたしますので、少々お待ちください。」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label baito">社員に伝える</span>
+            <div class="flow-text">「食中毒の件でお電話です」<br>→ 社員に電話を代わる</div>
+          </div>
+          <div class="flow-note">
+            <strong>社員が不在の場合：</strong><br>
+            「申し訳ございません。ただいま担当の者が席を外しております。お名前とご連絡先をお伺いして、折り返しご連絡させていただいてもよろしいでしょうか？」
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 最初のひと言・体調確認 -->
+    <div class="section">
+      <div class="section-header">2. 最初のひと言・体調確認</div>
+      <div class="section-content">
+        <div class="flow-box">
+          <div class="flow-title">
+            <span>💬</span>
+            <span>実際の会話の流れ</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-label customer">お客様</span>
+            <div class="flow-text">「○日にそちらで食事したんですけど、翌日から腹痛で病院行ったら食中毒って言われて…」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「ご連絡いただきありがとうございます。ご体調が悪いとのことで、大変申し訳ございません。現在はお身体の具合はいかがでしょうか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label customer">お客様</span>
+            <div class="flow-text">「まだお腹が痛くて…」「だいぶ良くなりました」など</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「承知いたしました。詳しく状況をお伺いさせていただいてもよろしいでしょうか？」</div>
+          </div>
+        </div>
+        
+        <div class="caution-box">
+          <div class="caution-header">
+            <span class="caution-icon">⚠️</span>
+            <span class="caution-title">責任を認める言い方は絶対にしない！</span>
+          </div>
+          <ul class="ng-list">
+            <li class="ng">❌ 「うちの店が原因ですね」</li>
+            <li class="ng">❌ 「申し訳ございません、当店の食事が原因で…」</li>
+            <li class="ok">⭕ 「詳しく状況をお伺いして確認させてください」</li>
+          </ul>
+        </div>
+        
+        <div class="warning-box">
+          <div class="warning-header">
+            <span class="warning-icon">⚠️</span>
+            <span class="warning-title">絶対に言ってはいけない言葉</span>
+          </div>
+          <ul class="warning-list">
+            <li>「他のお客様からは何も言われてませんよ」</li>
+            <li>「そんなはずはありません・当店ではないと思います」</li>
+            <li>「賠償はできません」</li>
+            <li>「うちが原因とは限りませんよね？」</li>
+          </ul>
+          <div class="warning-note">※原因確認前の否定や責任回避はトラブルの原因になります。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 聞き取り（電話対応シート） -->
+    <div class="section">
+      <div class="section-header">3. 聞き取り（電話対応シート）</div>
+      <div class="section-content">
+        <div class="flow-box">
+          <div class="flow-title">
+            <span>💬</span>
+            <span>聞き取りの進め方</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「恐れ入りますが、確認のためいくつかお伺いさせてください。まず、お名前をお聞かせいただけますか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「ご来店いただいたのは○月○日でよろしいでしょうか？何時頃でしたか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「何名様でいらっしゃいましたか？皆様ご体調を崩されていますか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「症状が出始めたのはいつ頃からでしょうか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「病院は受診されましたか？診断書はお持ちでしょうか？」</div>
+          </div>
+        </div>
+        
+        <div class="highlight">必ず復唱しながら記載してください。</div>
+        
+        <table class="sheet-table">
+          <tr><th>電話受付日時</th><td></td></tr>
+          <tr><th>対応者名</th><td></td></tr>
+          <tr><th>お客様名</th><td></td></tr>
+          <tr><th>ご連絡先</th><td></td></tr>
+          <tr><th>来店日・時間</th><td></td></tr>
+          <tr><th>人数・席</th><td></td></tr>
+          <tr><th>症状・発症時間</th><td></td></tr>
+          <tr><th>病院受診有無</th><td></td></tr>
+          <tr><th>診断書有無</th><td></td></tr>
+          <tr><th>折り返し可能時間</th><td></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. お客様への返答（一次対応） -->
+    <div class="section">
+      <div class="section-header">4. お客様への返答（一次対応）</div>
+      <div class="section-content">
+        <div class="flow-box">
+          <div class="flow-title">
+            <span>💬</span>
+            <span>聞き取り後の締めくくり</span>
+          </div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「お辛い中、詳しくお話しいただきありがとうございます。こちらで状況を確認しまして、オーナーより折り返しご連絡いたします。」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label customer">お客様</span>
+            <div class="flow-text">「いつ頃連絡もらえますか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「明日以降、ご連絡させていただいてもよろしいでしょうか？ご都合の良いお時間帯はございますか？」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <span class="flow-label staff">スタッフ</span>
+            <div class="flow-text">「かしこまりました。本日はご連絡いただきありがとうございました。お大事になさってください。」</div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-item">
+            <div class="flow-text" style="text-align:center; color:#888;">→ 電話を切る</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. オーナーへ連絡（終了） -->
+    <div class="section">
+      <div class="section-header">5. オーナーへ連絡（終了）</div>
+      <div class="section-content">
+        <p style="color:#5a5a5a; margin-bottom:12px;">以下の内容をすぐにオーナーへ送信してください。</p>
+        <ul class="checklist">
+          <li>このシートの写メ（またはスクショ）</li>
+          <li>注文レシートの写メ（エアレジ履歴より）</li>
+        </ul>
+        <div class="highlight">
+          <strong>その後の対応（誠意あるフォローや病院代の検討）はオーナーが判断します。</strong>
+        </div>
+        <div class="caution-box">
+          <div class="caution-text">※SNS等の拡散対策には<strong>「事実確認中です」</strong>で統一してください。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 対応のポイントまとめ -->
+    <div class="section">
+      <div class="section-header">📋 対応のポイントまとめ</div>
+      <div class="section-content">
+        <table class="summary-table">
+          <tr><th>電話を受けたとき</th><td>焦らず深呼吸。まず体調を心配する</td></tr>
+          <tr><th>話を聞くとき</th><td>否定せず、共感しながら聞く</td></tr>
+          <tr><th>記録するとき</th><td>必ず復唱して確認する</td></tr>
+          <tr><th>電話を切るとき</th><td>折り返し連絡を約束し、お大事にと伝える</td></tr>
+          <tr><th>電話後</th><td>すぐにオーナーへ報告</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      本マニュアルは店舗スタッフ向けの内部資料です
+    </footer>
+  </main>
+</body>
+</html>
