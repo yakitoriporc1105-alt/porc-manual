@@ -1,1 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>お子様来店時の対応ガイド｜焼とりporc</title>
+  <style>
+    :root { --max: 900px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #fff8e8 0%, #fff5f0 50%, #fff0f5 100%); min-height: 100vh; color: #333; }
+    
+    header { padding: 32px 16px; background: linear-gradient(135deg, #f8a060, #f08080); text-align: center; color: #fff; }
+    .header-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 14px; margin-bottom: 12px; }
+    .header-tag-dot { width: 10px; height: 10px; background: #ffd700; border-radius: 50%; }
+    h1 { margin: 0 0 8px 0; font-size: 22px; font-weight: bold; }
+    .header-sub { font-size: 14px; opacity: 0.9; }
+    
+    main { max-width: var(--max); margin: 0 auto; padding: 16px; }
+    
+    /* 説明ボックス */
+    .intro-box { background: #fff; border-radius: 16px; padding: 20px; margin: 16px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.06); border-left: 4px solid #f8a060; }
+    .intro-title { font-weight: bold; color: #8a6a4a; margin-bottom: 10px; font-size: 15px; }
+    .intro-text { color: #5a4a3a; font-size: 14px; line-height: 1.9; }
+    
+    /* セクションタイトル */
+    .section-title { font-size: 18px; font-weight: bold; color: #6a5a4a; margin: 24px 0 16px; padding-left: 12px; border-left: 4px solid #f8a060; }
+    
+    /* ステップカード */
+    .step-card { background: #fff; border-radius: 16px; margin: 16px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .step-header { padding: 16px 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #f0f0f0; }
+    .step-num { background: linear-gradient(135deg, #f8a060, #f08080); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; flex-shrink: 0; }
+    .step-title { font-size: 17px; font-weight: bold; color: #4a3a2a; }
+    .step-content { padding: 20px; }
+    
+    /* ロールタグ */
+    .role-tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; margin-right: 8px; }
+    .role-tag.kitchen { background: #fff0c0; color: #9a7a2a; }
+    .role-tag.hall { background: #e0f0ff; color: #4a6a9a; }
+    
+    /* アクションアイテム */
+    .action-item { padding: 14px 0; border-bottom: 1px solid #f5f5f5; }
+    .action-item:last-child { border-bottom: none; }
+    .action-main { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+    .action-text { font-size: 15px; color: #3a3a3a; }
+    .action-text strong { color: #c87050; }
+    .action-note { font-size: 13px; color: #8a8a8a; padding-left: 20px; margin-top: 6px; }
+    .action-note::before { content: "※ "; color: #c8a060; }
+    
+    /* リストアイテム */
+    .list-item { padding: 10px 0; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid #f5f5f5; }
+    .list-item:last-child { border-bottom: none; }
+    .list-bullet { color: #f8a060; font-weight: bold; font-size: 18px; }
+    .list-text { color: #4a4a4a; font-size: 15px; }
+    
+    /* 注釈ボックス */
+    .note-box { background: #fff8f0; border-radius: 10px; padding: 12px 16px; margin-top: 12px; font-size: 13px; color: #8a6a4a; }
+    .note-box::before { content: "※ "; color: #c8a060; font-weight: bold; }
+    
+    /* ポイントボックス */
+    .point-box { background: linear-gradient(135deg, #fff0f5, #fff5f8); border: 1px solid #f0d0d8; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .point-title { font-weight: bold; color: #9a5a6a; margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .point-title::before { content: "💡"; }
+    .point-text { color: #6a4a5a; font-size: 14px; }
+    
+    /* 迷ったらセクション */
+    .help-section { background: linear-gradient(135deg, #f0f8ff, #f8f0ff); border: 2px solid #d0d8f0; border-radius: 16px; margin: 20px 0; padding: 20px; text-align: center; }
+    .help-icon { font-size: 32px; margin-bottom: 10px; }
+    .help-title { font-size: 18px; font-weight: bold; color: #5a5a8a; margin-bottom: 12px; }
+    .help-text { color: #6a6a8a; font-size: 15px; }
+    .help-text strong { color: #7a6aaa; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-tag">
+      <span class="header-tag-dot"></span>
+      <span>ベースの考え方</span>
+      <span>焼とりporc</span>
+    </div>
+    <h1>お子様来店時の対応（ベースの考え方）</h1>
+    <p class="header-sub">※ 迷った時の判断軸。判断に不安がある場合は必ず社員・店長を呼ぶ。</p>
+  </header>
 
+  <main>
+    <!-- 説明ボックス -->
+    <div class="intro-box">
+      <div class="intro-title">このチャンネル（資料）について</div>
+      <div class="intro-text">
+        お子様が来店された時の「ベースの考え方」をまとめています。<br>
+        思いやりのある対応アイデアは、みんなで足して育てていきましょう。<br>
+        判断に不安がある場合は、必ず社員・店長を呼んでください。
+      </div>
+    </div>
+
+    <div class="section-title">対応の流れ</div>
+
+    <!-- 1. まず最優先すること -->
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-num">1</span>
+        <span class="step-title">まず最優先すること</span>
+      </div>
+      <div class="step-content">
+        <div class="action-item">
+          <div class="action-main">
+            <span class="role-tag kitchen">キッチン</span>
+            <span class="action-text"><strong>火がしっかり通っているか必ず確認</strong></span>
+          </div>
+          <div class="action-note">子供は大人よりも食中毒になりやすく、重篤化するリスクが高いため</div>
+        </div>
+        <div class="action-item">
+          <div class="action-main">
+            <span class="role-tag hall">ホール</span>
+            <span class="action-text"><strong>お子様にも生物への注意喚起をする</strong></span>
+          </div>
+          <div class="action-note">「体調のすぐれない方やお子様はご遠慮ください」と説明する</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 次にやること -->
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-num">2</span>
+        <span class="step-title">次にやること</span>
+      </div>
+      <div class="step-content">
+        <div class="list-item">
+          <span class="list-bullet">•</span>
+          <span class="list-text">小さなお子様には、子供用のお皿・コップを用意する</span>
+        </div>
+        <div class="list-item">
+          <span class="list-bullet">•</span>
+          <span class="list-text">必要であればストローを出す</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 提供の考え方 -->
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-num">3</span>
+        <span class="step-title">提供の考え方</span>
+      </div>
+      <div class="step-content">
+        <div class="list-item">
+          <span class="list-bullet">•</span>
+          <span class="list-text">お子様が食べられる物を先に聞く</span>
+        </div>
+        <div class="list-item">
+          <span class="list-bullet">•</span>
+          <span class="list-text">先に提供する（子供は待てないため）</span>
+        </div>
+        <div class="list-item">
+          <span class="list-bullet">•</span>
+          <span class="list-text">料理は全体的に早めを意識する</span>
+        </div>
+        <div class="note-box">家族連れは長居を求めないことが多い</div>
+      </div>
+    </div>
+
+    <!-- 4. 接客の考え方 -->
+    <div class="step-card">
+      <div class="step-header">
+        <span class="step-num">4</span>
+        <span class="step-title">接客の考え方</span>
+      </div>
+      <div class="step-content">
+        <div class="point-box">
+          <div class="point-title">ポイント</div>
+          <div class="point-text">子連れのお客様は「店側に嫌がられていないか」を気にされやすい</div>
+        </div>
+        <div class="list-item">
+          <span class="list-bullet">•</span>
+          <span class="list-text">お子様に一言声をかけるなど、<strong>ウェルカム感を出す</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 迷ったら -->
+    <div class="help-section">
+      <div class="help-icon">🤔</div>
+      <div class="help-title">迷ったら</div>
+      <div class="help-text">自分で判断せず、<strong>社員・店長を呼ぶ</strong></div>
+    </div>
+
+    <footer>
+      焼とりporc｜お子様来店時の対応ガイド
+    </footer>
+  </main>
+</body>
+</html>
