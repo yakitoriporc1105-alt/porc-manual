@@ -1,1 +1,215 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PayPay二重決済 対処マニュアル｜PayPay for Business</title>
+  <style>
+    :root { --max: 900px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #fff5f5 0%, #fff8f0 50%, #f5fff8 100%); min-height: 100vh; color: #333; }
+    
+    header { padding: 32px 16px; background: linear-gradient(135deg, #ff6b6b, #ff8e8e); text-align: center; color: #fff; }
+    h1 { margin: 0 0 4px 0; font-size: 22px; font-weight: bold; }
+    .header-sub { font-size: 14px; opacity: 0.9; }
+    
+    main { max-width: var(--max); margin: 0 auto; padding: 16px; }
+    
+    /* セクションカード */
+    .section { background: #fff; border-radius: 16px; margin: 16px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .section-header { padding: 16px 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #f0f0f0; }
+    .section-num { background: linear-gradient(135deg, #ff6b6b, #ff8e8e); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; flex-shrink: 0; }
+    .section-title { font-size: 18px; font-weight: bold; color: #c85a5a; }
+    .section-content { padding: 20px; }
+    
+    /* 重要ボックス */
+    .important-box { background: linear-gradient(135deg, #fff0f0, #fff5f5); border: 1px solid #f0c0c0; border-radius: 10px; padding: 16px; margin-bottom: 20px; }
+    .important-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .important-icon { font-size: 16px; }
+    .important-label { font-weight: bold; color: #c85a5a; font-size: 14px; }
+    .important-text { color: #6a4a4a; font-size: 14px; line-height: 1.8; }
+    
+    /* ステップカード */
+    .step-card { background: #f8f9fc; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .step-header { font-weight: bold; color: #5a5a8a; margin-bottom: 10px; font-size: 15px; }
+    .step-text { color: #5a5a6a; font-size: 14px; line-height: 1.8; }
+    
+    /* 注意ボックス */
+    .caution-box { background: #fff8e8; border: 1px solid #f0d8a0; border-radius: 10px; padding: 16px; margin: 16px 0; }
+    .caution-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .caution-icon { font-size: 16px; }
+    .caution-label { font-weight: bold; color: #9a7a3a; font-size: 14px; }
+    .caution-text { color: #6a5a3a; font-size: 14px; }
+    
+    /* 時間ボックス */
+    .time-box { background: linear-gradient(135deg, #f0fff0, #f5fff5); border: 1px solid #b0d8b0; border-radius: 10px; padding: 16px; margin-bottom: 20px; }
+    .time-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .time-icon { font-size: 16px; }
+    .time-label { font-weight: bold; color: #4a8a4a; font-size: 14px; }
+    .time-text { color: #3a6a3a; font-size: 14px; }
+    .time-text strong { color: #2a8a2a; }
+    
+    /* 返金方法カード */
+    .refund-intro { color: #5a5a6a; font-size: 14px; margin-bottom: 16px; }
+    .refund-card { background: #f8f9fc; border-radius: 12px; padding: 16px; margin: 12px 0; display: flex; align-items: flex-start; gap: 14px; }
+    .refund-icon { font-size: 24px; flex-shrink: 0; }
+    .refund-content { flex: 1; }
+    .refund-title { font-weight: bold; color: #5a5a8a; margin-bottom: 4px; font-size: 15px; }
+    .refund-desc { color: #6a6a7a; font-size: 13px; }
+    
+    /* フローセクション */
+    .flow-section { background: #fff; border-radius: 16px; margin: 20px 0; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .flow-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .flow-icon { font-size: 20px; }
+    .flow-title { font-size: 18px; font-weight: bold; color: #c85a5a; }
+    .flow-list { display: flex; flex-direction: column; gap: 0; }
+    .flow-item { background: #f8f9fc; border: 1px solid #e8e8f0; border-radius: 10px; padding: 14px 18px; text-align: center; color: #5a5a8a; font-size: 14px; }
+    .flow-arrow { text-align: center; color: #ffaaaa; font-size: 20px; padding: 6px 0; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PayPay二重決済<br>対処マニュアル</h1>
+    <p class="header-sub">PayPay for Business利用店舗向け</p>
+  </header>
 
+  <main>
+    <!-- 1. 二重決済の確認方法 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">1</span>
+        <span class="section-title">二重決済の確認方法</span>
+      </div>
+      <div class="section-content">
+        <div class="important-box">
+          <div class="important-header">
+            <span class="important-icon">📌</span>
+            <span class="important-label">重要</span>
+          </div>
+          <div class="important-text">
+            Airレジアプリでは二重決済の確認ができない場合があります。<br>
+            必ず<strong>ブラウザからPayPay for Business管理画面にログイン</strong>して確認してください。
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-header">STEP 1：PayPay for Business管理画面へログイン</div>
+          <div class="step-text">
+            ブラウザで「PayPay for Business ログイン」と検索し、管理画面にアクセスします。<br>
+            登録済みのIDとパスワードでログインしてください。
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-header">STEP 2：取引履歴を確認</div>
+          <div class="step-text">
+            管理画面のメニューから「取引履歴」をタップします。<br>
+            該当するお客様の決済履歴を検索し、同じ金額の決済が複数回行われていないかを確認します。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 決済取り消し方法 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">2</span>
+        <span class="section-title">決済取り消し方法</span>
+      </div>
+      <div class="section-content">
+        <div class="step-card">
+          <div class="step-header">STEP 1：決済取り消し依頼</div>
+          <div class="step-text">
+            PayPay for Business管理画面の「取引履歴」から、取り消したい決済を選択し、<br>
+            「返金する」ボタンをタップして手続きを進めます。
+          </div>
+        </div>
+        
+        <div class="caution-box">
+          <div class="caution-header">
+            <span class="caution-icon">⚠</span>
+            <span class="caution-label">注意事項</span>
+          </div>
+          <div class="caution-text">
+            返金操作後、必ず取引履歴で<strong>「返金済」ステータス</strong>を確認してください。<br>
+            返金処理は<strong>即日対応が原則</strong>です。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. お客様へのご案内 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-num">3</span>
+        <span class="section-title">お客様へのご案内</span>
+      </div>
+      <div class="section-content">
+        <div class="time-box">
+          <div class="time-header">
+            <span class="time-icon">⏰</span>
+            <span class="time-label">返金にかかる時間</span>
+          </div>
+          <div class="time-text">
+            PayPay残高への返金は、<strong>即時〜翌営業日程度</strong>の時間がかかります。<br>
+            お客様にはその旨を丁寧にご説明してください。
+          </div>
+        </div>
+        
+        <div class="refund-intro">お客様に以下の返金方法からお選びいただきます：</div>
+        
+        <div class="refund-card">
+          <span class="refund-icon">💳</span>
+          <div class="refund-content">
+            <div class="refund-title">PayPay残高への返金</div>
+            <div class="refund-desc">PayPay残高への返金処理を待つ（即時〜翌営業日）</div>
+          </div>
+        </div>
+        
+        <div class="refund-card">
+          <span class="refund-icon">🏪</span>
+          <div class="refund-content">
+            <div class="refund-title">後日ご来店での現金返金</div>
+            <div class="refund-desc">お客様に再度ご来店いただき、現金でお返しする</div>
+          </div>
+        </div>
+        
+        <div class="refund-card">
+          <span class="refund-icon">🏦</span>
+          <div class="refund-content">
+            <div class="refund-title">口座への現金振り込み</div>
+            <div class="refund-desc">お客様の口座情報をお伺いし、振り込みで返金する</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 対応フロー（まとめ） -->
+    <div class="flow-section">
+      <div class="flow-header">
+        <span class="flow-icon">📋</span>
+        <span class="flow-title">対応フロー（まとめ）</span>
+      </div>
+      <div class="flow-list">
+        <div class="flow-item">二重決済の疑いが発生</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">PayPay for Business管理画面にログイン</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">取引履歴で二重決済を確認</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">返金処理を実行</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">お客様に返金方法を選択いただく</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-item">店長・社員へ報告</div>
+      </div>
+    </div>
+
+    <footer>
+      本マニュアルは店舗スタッフ向けの内部資料です
+    </footer>
+  </main>
+</body>
+</html>
