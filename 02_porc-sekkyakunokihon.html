@@ -1,1 +1,446 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>接客の極意｜porc</title>
+  <style>
+    :root { --max: 900px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #fef9f3 0%, #f5f0ff 50%, #f0f7ff 100%); min-height: 100vh; }
+    header { padding: 22px 16px 14px; background: linear-gradient(90deg, #f5c6b3, #e8b4d8); position: sticky; top: 0; box-shadow: 0 2px 10px rgba(232,180,160,0.3); z-index: 100; }
+    header .wrap, main { max-width: var(--max); margin: 0 auto; }
+    h1 { margin: 0; font-size: 22px; color: #5a4a52; }
+    .sub { margin-top: 6px; color: #7a6a72; font-size: 13px; }
+    
+    /* 目次 */
+    .toc { background: rgba(255,255,255,0.9); border-radius: 12px; padding: 16px; margin: 16px; box-shadow: 0 3px 12px rgba(0,0,0,0.05); }
+    .toc-title { font-weight: bold; color: #7a6a72; margin-bottom: 10px; }
+    .toc-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-list a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border: 2px dashed #a8d8a8; border-radius: 20px; text-decoration: none; color: #5a6a5a; font-size: 13px; transition: all 0.2s; }
+    .toc-list a:hover { background: #f0fff0; border-color: #7bc88f; }
+    .toc-num { background: linear-gradient(135deg, #a8d8c8, #8bc4b0); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; }
+    
+    main { padding: 0 16px 40px; }
+    
+    /* セクション */
+    .section { background: rgba(255,255,255,0.9); border-radius: 12px; padding: 20px; margin: 16px 0; box-shadow: 0 3px 12px rgba(0,0,0,0.05); }
+    .section-title { font-size: 18px; font-weight: bold; color: #5a4a52; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 3px solid; border-image: linear-gradient(90deg, #f5c6b3, #c8b4d8) 1; }
+    
+    /* 質問カード */
+    .question-card { background: #faf8f5; border-radius: 10px; padding: 14px; margin: 12px 0; border-left: 4px solid #c8b4d8; }
+    .question-card strong { color: #7a5a8a; }
+    .question-card p { margin: 6px 0 0; color: #666; font-size: 14px; }
+    
+    /* 心構えボックス */
+    .mindset-box { background: linear-gradient(135deg, #f5f0ff, #fff5f8); border-radius: 12px; padding: 16px; margin: 12px 0; }
+    .mindset-box p { margin: 8px 0; color: #555; }
+    .mindset-box strong { color: #8a6a9a; }
+    .highlight { color: #d87093; text-decoration: underline; }
+    
+    /* 3つの心構え */
+    .three-items { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+    .three-item { flex: 1; min-width: 150px; background: #fff; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .three-item .num { font-size: 28px; font-weight: bold; margin-bottom: 8px; }
+    .three-item:nth-child(1) .num { color: #a8d8c8; }
+    .three-item:nth-child(2) .num { color: #a8c8d8; }
+    .three-item:nth-child(3) .num { color: #e8b4b4; }
+    .three-item .text { color: #555; font-size: 14px; }
+    
+    /* NGリスト */
+    .ng-list { list-style: none; padding: 0; margin: 0; }
+    .ng-list li { padding: 10px 12px; margin: 8px 0; background: #fff; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+    .ng-list .x { color: #e88; font-weight: bold; font-size: 16px; }
+    .ng-note { color: #888; font-size: 13px; margin-top: 12px; font-style: italic; }
+    
+    /* 7大用語 */
+    .terms-list { list-style: none; padding: 0; margin: 0; }
+    .terms-list li { padding: 12px 16px; margin: 8px 0; background: linear-gradient(90deg, #f8f5ff, #fff); border-radius: 8px; display: flex; align-items: center; gap: 12px; }
+    .terms-list .num { background: linear-gradient(135deg, #c8b4d8, #b4a0c4); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
+    
+    /* 8ステップ */
+    .step { background: #fff; border-radius: 12px; margin: 16px 0; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .step-header { background: linear-gradient(90deg, #e8f4f8, #f8f0ff); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+    .step-num { background: linear-gradient(135deg, #a8c8d8, #98b8c8); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; }
+    .step-title { font-weight: bold; color: #4a5a6a; }
+    .step-subtitle { font-size: 12px; color: #8a9aaa; margin-left: 8px; }
+    .step-content { padding: 16px; }
+    .step-section { margin: 12px 0; }
+    .step-section-title { font-size: 13px; font-weight: bold; color: #7a8a9a; margin-bottom: 8px; }
+    .step-section ul { margin: 0; padding-left: 20px; }
+    .step-section li { margin: 6px 0; color: #555; font-size: 14px; }
+    .step-require { background: #f0fff0; border-radius: 8px; padding: 10px 12px; margin: 8px 0; }
+    .step-require strong { color: #6a9a6a; font-size: 13px; }
+    .step-ng { background: #fff5f5; border-radius: 8px; padding: 10px 12px; margin: 8px 0; }
+    .step-ng strong { color: #c88; font-size: 13px; }
+    
+    /* 意識リスト */
+    .awareness-item { background: #fff; border-radius: 10px; padding: 16px; margin: 12px 0; border-left: 4px solid #a8d8c8; }
+    .awareness-item h4 { margin: 0 0 8px; color: #5a6a5a; font-size: 15px; }
+    .awareness-item ul { margin: 0; padding-left: 20px; }
+    .awareness-item li { margin: 6px 0; color: #555; font-size: 14px; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; background: rgba(255,255,255,0.5); border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>接客の極意（新人向け）</h1>
+      <div class="sub">焼とりporc｜永久保存用ページ</div>
+    </div>
+  </header>
 
+  <main>
+    <nav class="toc">
+      <div class="toc-title">目次</div>
+      <div class="toc-list">
+        <a href="#think"><span class="toc-num">1</span>まず考えてみよう</a>
+        <a href="#mindset"><span class="toc-num">2</span>接客の心構え</a>
+        <a href="#three"><span class="toc-num">3</span>最低限守るべき3つ</a>
+        <a href="#ng"><span class="toc-num">4</span>お客様がされて嫌なこと</a>
+        <a href="#terms"><span class="toc-num">5</span>接客7大用語</a>
+        <a href="#steps"><span class="toc-num">6</span>ホール業務8ステップ</a>
+        <a href="#why"><span class="toc-num">7</span>なぜ接客が重要か</a>
+        <a href="#awareness"><span class="toc-num">8</span>意識してほしいこと</a>
+      </div>
+    </nav>
+
+    <section id="think" class="section">
+      <h2 class="section-title">まず、接客について考えてみよう</h2>
+      <div class="question-card">
+        <strong>Q：接客とはなんでしょう？</strong>
+        <p>「何をすると接客と言えるか」自分の言葉で考える。</p>
+      </div>
+      <div class="question-card">
+        <strong>Q：今、自分は接客できていますか？</strong>
+        <p>できている／できていない、ではなく「どの場面が弱いか」まで。</p>
+      </div>
+      <div class="question-card">
+        <strong>Q：今の接客は何点ですか？</strong>
+        <p>点数を付けると改善点が見える。</p>
+      </div>
+      <div class="question-card">
+        <strong>Q：どういう気持ちで接客していますか？</strong>
+        <p>"作業"になっていないか確認する。</p>
+      </div>
+    </section>
+
+    <section id="mindset" class="section">
+      <h2 class="section-title">接客の心構え</h2>
+      <div class="mindset-box">
+        <p>接客の基本は<strong>「お客さまに喜んでもらうこと」</strong>です。そのためには、<strong>常にお客さまの立場</strong>になって考えることが大切です。</p>
+        <p>お店が忙しくて余裕がなくなることがあっても、<span class="highlight">それはお客さまにとって関係のないこと</span>です。数ある店の中からこの店を選んでくれています。</p>
+        <p>どんな状況であっても、お客様との出会いを<strong>一期一会</strong>として大事にする心構えを持ちましょう。</p>
+      </div>
+      <div class="question-card">
+        <strong>Q：お客様の立場になって考えるとは？</strong>
+        <p>「自分がお金を払う側だったらどう感じるか」まで落とし込む。</p>
+      </div>
+    </section>
+
+    <section id="three" class="section">
+      <h2 class="section-title">最低限守るべき接客の3つの心構え</h2>
+      <div class="three-items">
+        <div class="three-item">
+          <div class="num">1</div>
+          <div class="text">笑顔で明るく</div>
+        </div>
+        <div class="three-item">
+          <div class="num">2</div>
+          <div class="text">はっきりと気持ちの良い声</div>
+        </div>
+        <div class="three-item">
+          <div class="num">3</div>
+          <div class="text">丁寧な対応</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ng" class="section">
+      <h2 class="section-title">お客様がされて嫌なこと</h2>
+      <ul class="ng-list">
+        <li><span class="x">✕</span>不潔な服装</li>
+        <li><span class="x">✕</span>声がぼそぼそ小さい／笑顔がない</li>
+        <li><span class="x">✕</span>お客様が言われた言葉を訂正する</li>
+        <li><span class="x">✕</span>従業員同士のおしゃべり</li>
+        <li><span class="x">✕</span>柱や壁にもたれかかる</li>
+        <li><span class="x">✕</span>「できません」「わかりません」が多い</li>
+        <li><span class="x">✕</span>腕組みする／髪を触る</li>
+        <li><span class="x">✕</span>お見送りせず片付けをする／席を立ったらすぐ片付ける</li>
+      </ul>
+      <p class="ng-note">※ "やっていないつもり" でも、お客様からは見えています。</p>
+    </section>
+
+    <section id="terms" class="section">
+      <h2 class="section-title">接客 7大用語</h2>
+      <ul class="terms-list">
+        <li><span class="num">1</span>いらっしゃいませ</li>
+        <li><span class="num">2</span>かしこまりました</li>
+        <li><span class="num">3</span>少々お待ちください</li>
+        <li><span class="num">4</span>お待たせいたしました</li>
+        <li><span class="num">5</span>申し訳ございません</li>
+        <li><span class="num">6</span>恐れ入ります</li>
+        <li><span class="num">7</span>ありがとうございました。またご利用くださいませ</li>
+      </ul>
+    </section>
+
+    <section id="steps" class="section">
+      <h2 class="section-title">ホール業務 基本（8ステップ）</h2>
+      
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">①</span>
+          <span class="step-title">お出迎え</span>
+          <span class="step-subtitle">入口が最重要</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>「いらっしゃいませ、何名様でしょうか？ご予約いただいてますでしょうか？」</li>
+              <li>予約で席が分かる：「ご予約ありがとうございます。お席にご案内いたします」</li>
+              <li>予約で席が不明：「お席を確認いたしますのでこちらで少々お待ちください」</li>
+              <li>新規で席が空いている：「お席空いておりますのでご案内いたします」</li>
+              <li>空いていない：「申し訳ございません。ただ今満席で、◯時からでしたらご案内できます」</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>ウェルカム感／入口を見逃さない／笑顔で対応</div>
+          <div class="step-ng"><strong>NG：</strong>気づかない／だるそう／笑顔なし／「お好きな席どうぞ」</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">②</span>
+          <span class="step-title">ご案内・席割り</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>お席までご案内し「こちらのお席でお願いします」</li>
+              <li>荷物置き・ハンガー位置を案内</li>
+              <li>「おしぼりお持ちいたしますので少々お待ちください」</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>人数・配置を考えスムーズに案内／毎回社員に確認せずベスト案内</div>
+          <div class="step-ng"><strong>NG：</strong>案内まで待たせすぎ／「どこでもどうぞ」など適当案内</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">③</span>
+          <span class="step-title">ファーストサービス</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>おしぼりを上座から（男女なら女性から）両手で渡す</li>
+              <li>「当店ご来店初めてでしょうか？」でリピーター確認</li>
+              <li>メニュー説明（各店オペレーションに準ずる）</li>
+              <li>混雑時：2時間制の案内</li>
+              <li>「またお決まりのころにお伺いします」or 決まっていそうなら伺う</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>気の利いた声掛け（雨・暑さ等）／お客様のペースに合わせる</div>
+          <div class="step-ng"><strong>NG：</strong>「決まったら呼んでください」だけ／案内して放置</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">④</span>
+          <span class="step-title">オーダー</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>注文を間違えずに通す</li>
+              <li>ファーストオーダーを大切にする</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>おすすめでもう一品／焼きもの中心なら時間がかかる説明＋スピードメニュー提案</div>
+          <div class="step-ng"><strong>NG：</strong>ファーストオーダーを忘れる</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">⑤</span>
+          <span class="step-title">商品提供</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>温かい／冷たいうちに提供</li>
+              <li>取り皿・れんげ等、必要な物も持っていく</li>
+              <li>正しい向き・持ち方で提供</li>
+              <li>商品名を正しく言う</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>熱い物は注意喚起／簡単な説明／残りは小皿に盛り直しなど</div>
+          <div class="step-ng"><strong>NG：</strong>出すだけで終わる／不快な出し方・持ち方</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">⑥</span>
+          <span class="step-title">中間サービス</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>バッシング</li>
+              <li>グラスが空ならお代わり確認（しつこくならない）</li>
+              <li>お客様の目線に気を配る</li>
+              <li>メニューを見ていたら声掛け</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>呼ばれる前に行動／トイレ・喫煙案内／注文が無ければ水・お茶を提案</div>
+          <div class="step-ng"><strong>NG：</strong>呼ばれるのを待つ／お客様の前からいなくなる／おしゃべりで気づかない</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">⑦</span>
+          <span class="step-title">会計</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>会計と言われたら伝票を持つ</li>
+              <li>カード・現金を預かる際、領収書の要否確認</li>
+              <li>おつりを間違えない</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>金額を知られたくないケースもある（見せない・言わない）</div>
+          <div class="step-ng"><strong>NG：</strong>おつり間違い／卓番間違いで会計</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">⑧</span>
+          <span class="step-title">お見送り</span>
+          <span class="step-subtitle">最後が記憶に残る</span>
+        </div>
+        <div class="step-content">
+          <div class="step-section">
+            <div class="step-section-title">基本</div>
+            <ul>
+              <li>「◯卓様お帰りです」と全員にわかる声掛け</li>
+              <li>見送りする／手を止めてお客様を見て「ありがとうございました」</li>
+              <li>バッシングはお客様が店外に出た後</li>
+            </ul>
+          </div>
+          <div class="step-require"><strong>求めること：</strong>見えなくなるまで離れない／一声（寒い中〜等）</div>
+          <div class="step-ng"><strong>NG：</strong>帰りに気づかない／すぐ片付け／目を合わせずに礼</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" class="section">
+      <h2 class="section-title">お客様対応・接客の大切さ</h2>
+      <div class="mindset-box">
+        <p>デフォルト業務だけしていても、お客様の満足度は上がりません。お客様は期待を持って入店しています。料理だけでなく、<strong>接客も同じくらい大切</strong>です。</p>
+        <p><strong>Q：料理はおいしかったけど、店員の対応が悪かったらまた行きたいと思いますか？</strong></p>
+      </div>
+      <div class="mindset-box">
+        <p><strong>なぜ接客をしてほしいか</strong></p>
+        <p>目的は「いいお店だな」「また来たい」と思ってもらい<strong>リピーター</strong>になってもらうことです。リピーターが増えないと売上は保てないし、上がりません。</p>
+      </div>
+      <div class="question-card">
+        <strong>Q：なぜリピーターが必要か？</strong>
+        <p>売上が上がらないと、給与・シフトにも影響が出る。</p>
+      </div>
+    </section>
+
+    <section id="awareness" class="section">
+      <h2 class="section-title">接客で意識してほしいこと（最低限）</h2>
+      
+      <div class="awareness-item">
+        <h4>入口・最初の対応を意識する</h4>
+        <ul>
+          <li>入店した瞬間の第一印象で店の良し悪しが決まる</li>
+          <li>最初の印象が悪いと小さなミスでもクレームになりやすい</li>
+          <li>逆に印象が良いと大きなミスでも許される場合がある</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>お客様目線で考える</h4>
+        <ul>
+          <li>「来店→案内→説明→ドリンク→料理→会計」だけで終わっていないか</li>
+          <li>お客様が今、何を求めているかを常に考える</li>
+          <li>痒いところに手が届く接客＝プロの接客</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>お客様に背を向けない</h4>
+        <ul>
+          <li>対応は素早く</li>
+          <li>作業中も半身で客席を見て状況を把握する</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>待機中は笑顔／呼ばれたら元気よく</h4>
+        <ul>
+          <li>疲れた顔・気の抜けた顔はしない</li>
+          <li>呼ばれたら「はい！お伺いします（いたします）！」</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>お客様に見られている意識（プロ意識）</h4>
+        <ul>
+          <li>出し方・作り方・受け答えは常に見られている</li>
+          <li>おどおどすると「この店大丈夫かな？」と思われる</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>「少々お待ちください」の使い方</h4>
+        <ul>
+          <li><strong>手が回らない時の言い訳として使わない</strong></li>
+          <li>使うなら「料理をご用意しますので少々お待ちください」等の正しい場面</li>
+          <li>手が回らない時は「すぐお伺いします」が好ましい</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>呼ばれてから行動しない（待たない）</h4>
+        <ul>
+          <li>呼ばれそうな卓には先に声掛け</li>
+          <li>目配り・気配り</li>
+        </ul>
+      </div>
+
+      <div class="awareness-item">
+        <h4>従業員同士のおしゃべりに注意</h4>
+        <ul>
+          <li>お客様にはよく聞こえている</li>
+          <li>呼んでも気づかない／真顔対応は最悪</li>
+          <li>話すなら小声＋客席を見ながら</li>
+        </ul>
+      </div>
+
+      <p class="ng-note">このページは新人向けの「接客のベース」を統一するための資料です。</p>
+    </section>
+
+    <footer>
+      最終更新：2025-12-19｜焼とりporc
+    </footer>
+  </main>
+</body>
+</html>
