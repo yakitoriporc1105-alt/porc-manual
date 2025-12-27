@@ -1,1 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discord運用ルール（porc）</title>
+  <style>
+    :root { --max: 900px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #e8f4fc 0%, #f0f8ff 50%, #f5f5ff 100%); min-height: 100vh; color: #333; }
+    
+    header { padding: 24px 16px; background: linear-gradient(90deg, #a8d8ea, #c5e8f0); text-align: center; }
+    h1 { margin: 0 0 8px 0; font-size: 22px; color: #2a4a5a; }
+    .header-sub { font-size: 14px; color: #5a7a8a; margin-bottom: 16px; }
+    .header-meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .meta-item { background: rgba(255,255,255,0.7); padding: 6px 14px; border-radius: 20px; font-size: 13px; color: #4a6a7a; }
+    
+    main { max-width: var(--max); margin: 0 auto; padding: 16px; }
+    
+    /* セクションカード */
+    .section { background: #fff; border-radius: 16px; margin: 16px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .section-header { padding: 16px 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f0f0f0; }
+    .section-icon { font-size: 24px; }
+    .section-title { font-size: 18px; font-weight: bold; color: #2a4a5a; }
+    .section-tag { background: #e8f4f8; color: #4a8a9a; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+    .section-tag.required { background: #e8f8e8; color: #4a9a5a; }
+    .section-tag.rule { background: #fff0e8; color: #c87a4a; }
+    .section-tag.example { background: #f8f0ff; color: #8a6aaa; }
+    .section-tag.recommend { background: #fff8e0; color: #a08a40; }
+    .section-content { padding: 20px; }
+    
+    /* 強調ボックス */
+    .highlight-box { background: #f8fbfd; border-left: 4px solid #6ab0c8; padding: 16px; border-radius: 0 10px 10px 0; margin-bottom: 16px; }
+    .highlight-title { font-weight: bold; color: #2a5a6a; margin-bottom: 8px; }
+    .highlight-sub { font-size: 14px; color: #6a8a9a; }
+    
+    /* リスト */
+    .rule-list { list-style: none; padding: 0; margin: 0; }
+    .rule-list li { padding: 12px 0; border-bottom: 1px solid #f5f5f5; display: flex; align-items: flex-start; gap: 10px; }
+    .rule-list li:last-child { border-bottom: none; }
+    .rule-bullet { color: #6ab0c8; font-weight: bold; flex-shrink: 0; }
+    
+    /* ポイントボックス */
+    .point-box { background: linear-gradient(135deg, #f0f8ff, #f8f0ff); border-radius: 10px; padding: 14px 16px; margin-top: 16px; }
+    .point-label { font-weight: bold; color: #6a7aaa; font-size: 13px; margin-bottom: 4px; }
+    .point-text { color: #4a5a6a; }
+    
+    /* ステップリスト */
+    .step-list { list-style: none; padding: 0; margin: 0; }
+    .step-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+    .step-item:last-child { border-bottom: none; }
+    .step-num { background: #6ab0c8; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; }
+    .step-content { flex: 1; }
+    .step-title { font-weight: bold; color: #2a4a5a; margin-bottom: 4px; }
+    .step-desc { font-size: 14px; color: #6a7a8a; }
+    
+    /* 注意ボックス */
+    .notice-box { background: #fff8f0; border: 1px solid #f0d8c0; border-radius: 10px; padding: 14px 16px; margin-top: 16px; }
+    .notice-label { font-weight: bold; color: #c87a4a; font-size: 13px; margin-bottom: 4px; }
+    .notice-text { color: #6a5a4a; font-size: 14px; }
+    
+    /* 判断基準リスト */
+    .criteria-list { list-style: none; padding: 0; margin: 0; }
+    .criteria-item { background: #f8fbfd; border-radius: 10px; padding: 14px 16px; margin: 10px 0; }
+    .criteria-title { font-weight: bold; color: #2a5a6a; margin-bottom: 4px; }
+    .criteria-desc { font-size: 14px; color: #6a8a9a; }
+    
+    /* 目標ボックス */
+    .goal-box { background: linear-gradient(135deg, #e8f8e8, #f0fff0); border: 2px solid #a0d8a0; border-radius: 10px; padding: 16px; margin-top: 16px; text-align: center; }
+    .goal-label { font-size: 13px; color: #5a9a5a; margin-bottom: 4px; }
+    .goal-text { font-size: 16px; font-weight: bold; color: #3a7a3a; }
+    
+    /* カテゴリーグリッド */
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .category-card { background: #f8fbfd; border-radius: 10px; padding: 14px; }
+    .category-name { font-weight: bold; color: #2a5a6a; margin-bottom: 6px; }
+    .category-desc { font-size: 13px; color: #6a8a9a; }
+    
+    /* 例ボックス */
+    .example-box { background: #f8f0ff; border-radius: 10px; padding: 14px 16px; margin-top: 16px; }
+    .example-label { font-weight: bold; color: #8a6aaa; font-size: 13px; margin-bottom: 8px; }
+    .example-flow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .example-step { background: #fff; padding: 8px 12px; border-radius: 8px; font-size: 14px; color: #5a5a6a; }
+    .example-arrow { color: #a090c0; font-weight: bold; }
+    
+    /* テンプレートボックス */
+    .template-box { background: #f5f8fa; border: 1px solid #e0e8f0; border-radius: 10px; padding: 16px; font-family: monospace; font-size: 13px; line-height: 2; white-space: pre-wrap; color: #4a5a6a; }
+    
+    /* フッターメッセージ */
+    .footer-message { background: linear-gradient(135deg, #f0f8ff, #fff0f8); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+    .footer-main { font-size: 15px; color: #5a6a7a; margin-bottom: 8px; }
+    .footer-highlight { color: #c87a8a; font-weight: bold; }
+    .footer-sub { font-size: 14px; color: #7a8a9a; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Discord運用ルール（店のルール／業務連絡）</h1>
+    <p class="header-sub">店のルールや業務連絡は、このDiscordで管理します。<br>みんなが安心して働けるようにルールを可視化し、より良いサービスにつなげるためのツールです。ご協力お願いします。</p>
+    <div class="header-meta">
+      <span class="meta-item">対象：全スタッフ</span>
+      <span class="meta-item">目的：ルールの統一／伝達ミス防止／見返せる状態を作る</span>
+    </div>
+  </header>
 
+  <main>
+    <!-- 全スタッフのルール -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">✅</span>
+        <span class="section-title">全スタッフのルール</span>
+        <span class="section-tag required">必須</span>
+      </div>
+      <div class="section-content">
+        <div class="highlight-box">
+          <div class="highlight-title">出勤前に必ず確認 → 確認後はリアクション（スタンプ）を押す</div>
+          <div class="highlight-sub">リアクションがない場合は「未確認」と判断します。</div>
+        </div>
+        
+        <ul class="rule-list">
+          <li><span class="rule-bullet">•</span><span>#業務連絡 で「今日〜直近で必要な情報」を必ず確認</span></li>
+          <li><span class="rule-bullet">•</span><span>不明点はそのままにせず、店長／現場長へ質問</span></li>
+          <li><span class="rule-bullet">•</span><span>ルールは「読んだつもり」を防ぐため、確認の合図が必要です</span></li>
+        </ul>
+        
+        <div class="point-box">
+          <div class="point-label">ポイント：</div>
+          <div class="point-text">Discordは「後から見返せる」ことが強みです。口頭・LINEだけで完結させません。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 投稿する人の使い方 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">📝</span>
+        <span class="section-title">投稿する人の使い方</span>
+        <span class="section-tag rule">運用ルール</span>
+      </div>
+      <div class="section-content">
+        <ul class="step-list">
+          <li class="step-item">
+            <span class="step-num">①</span>
+            <div class="step-content">
+              <div class="step-title">まずは #業務連絡 に投稿</div>
+              <div class="step-desc">新しく案内したい内容は、最初にここへ。</div>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num">②</span>
+            <div class="step-content">
+              <div class="step-title">後日「ルール化」するなら、内容をまとめて各カテゴリーへ</div>
+              <div class="step-desc">誰が読んでも同じ判断になるように、短く整理して残す。</div>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num">③</span>
+            <div class="step-content">
+              <div class="step-title">当日で完結する内容は、まとめ不要</div>
+              <div class="step-desc">例：本日タイミーさん入ります／今日だけの変更 など</div>
+            </div>
+          </li>
+        </ul>
+        
+        <div class="notice-box">
+          <div class="notice-label">注意：</div>
+          <div class="notice-text">永続的に残すべき内容（今後も繰り返す内容）は、必ず「ルール化」してください。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 「ルール化」する基準 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">🍁</span>
+        <span class="section-title">「ルール化」する基準</span>
+        <span class="section-tag rule">判断ルール</span>
+      </div>
+      <div class="section-content">
+        <ul class="criteria-list">
+          <li class="criteria-item">
+            <div class="criteria-title">繰り返し起きる</div>
+            <div class="criteria-desc">毎週／毎月／定期的に起きる</div>
+          </li>
+          <li class="criteria-item">
+            <div class="criteria-title">人によって判断がブレる</div>
+            <div class="criteria-desc">やり方が統一されていない</div>
+          </li>
+          <li class="criteria-item">
+            <div class="criteria-title">お客様満足・安全・クレームに直結</div>
+            <div class="criteria-desc">接客・提供・衛生・会計など</div>
+          </li>
+          <li class="criteria-item">
+            <div class="criteria-title">新人が迷う</div>
+            <div class="criteria-desc">聞かないと分からない</div>
+          </li>
+        </ul>
+        
+        <div class="goal-box">
+          <div class="goal-label">目標：</div>
+          <div class="goal-text">「誰が見ても同じ行動ができる」状態を作る。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カテゴリーの使い分け -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">📁</span>
+        <span class="section-title">カテゴリーの使い分け</span>
+        <span class="section-tag example">例</span>
+      </div>
+      <div class="section-content">
+        <div class="category-grid">
+          <div class="category-card">
+            <div class="category-name">ホール</div>
+            <div class="category-desc">テーブルセッティング／接客のルール改正 など</div>
+          </div>
+          <div class="category-card">
+            <div class="category-name">キッチン</div>
+            <div class="category-desc">新メニュー／仕込み・提供オペレーション など</div>
+          </div>
+          <div class="category-card">
+            <div class="category-name">その他</div>
+            <div class="category-desc">どこのカテゴリーにも属さない全体ルール など</div>
+          </div>
+        </div>
+        
+        <div class="example-box">
+          <div class="example-label">例：新メニューを出す場合</div>
+          <div class="example-flow">
+            <span class="example-step">① 事前に #業務連絡 で案内</span>
+            <span class="example-arrow">→</span>
+            <span class="example-step">② 内容をまとめて「キッチン」に投稿（ルール化）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 投稿テンプレ -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">✍️</span>
+        <span class="section-title">投稿テンプレ（コピペ用）</span>
+        <span class="section-tag recommend">おすすめ</span>
+      </div>
+      <div class="section-content">
+        <div class="template-box">【タイトル】（例：テーブルセッティング改正）
+
+■結論（何が変わる？）
+・
+
+■対象（誰が？いつから？）
+・
+
+■手順（1〜3で短く）
+1.
+2.
+3.
+
+■注意点（ミスが起きやすい所）
+・
+
+■確認方法（確認したらリアクション）
+・この投稿を確認したらリアクションお願いします</div>
+      </div>
+    </div>
+
+    <!-- フッターメッセージ -->
+    <div class="footer-message">
+      <div class="footer-main">最後に：Discordは「責めるため」ではなく、<span class="footer-highlight">みんなが安心して働くために整える道具</span>です。</div>
+      <div class="footer-sub">全員で同じ情報を持って、同じ基準で動ける店にしていきましょう。</div>
+    </div>
+
+    <footer>
+      焼とりporc｜Discord運用ルール
+    </footer>
+  </main>
+</body>
+</html>
