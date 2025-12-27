@@ -1,1 +1,369 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airレジ トラブル対応マニュアル｜難波店</title>
+  <style>
+    :root { --max: 900px; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif; line-height:1.8; background: linear-gradient(135deg, #e8f0fc 0%, #f0f4ff 50%, #f8f5ff 100%); min-height: 100vh; color: #333; }
+    
+    header { padding: 32px 16px; background: linear-gradient(135deg, #5a7adc, #7a6adc); text-align: center; color: #fff; }
+    .header-icon { font-size: 32px; margin-bottom: 8px; }
+    h1 { margin: 0 0 8px 0; font-size: 24px; font-weight: bold; }
+    .header-sub { font-size: 14px; opacity: 0.9; }
+    
+    /* 重要フローボックス */
+    .flow-box { max-width: var(--max); margin: -20px auto 0; padding: 0 16px; }
+    .flow-inner { background: #fff; border-radius: 12px; padding: 16px 20px; box-shadow: 0 4px 20px rgba(90,122,220,0.2); text-align: center; }
+    .flow-label { font-size: 13px; color: #6a7a9a; margin-bottom: 8px; }
+    .flow-steps { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; }
+    .flow-step { background: linear-gradient(135deg, #5a7adc, #7a6adc); color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: bold; }
+    .flow-arrow { color: #a0a8c0; font-weight: bold; }
+    
+    main { max-width: var(--max); margin: 0 auto; padding: 16px; }
+    
+    /* 基本方針セクション */
+    .policy-section { background: #fff; border-radius: 16px; margin: 20px 0; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .policy-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .policy-icon { font-size: 20px; }
+    .policy-title { font-size: 18px; font-weight: bold; color: #3a5a8a; }
+    .policy-list { list-style: none; padding: 0; margin: 0; }
+    .policy-list li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: flex-start; gap: 10px; }
+    .policy-list li:last-child { border-bottom: none; }
+    .policy-bullet { color: #5a7adc; font-weight: bold; }
+    .highlight { color: #5a7adc; font-weight: bold; }
+    
+    /* トラブルカード */
+    .trouble-card { background: #fff; border-radius: 16px; margin: 16px 0; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .trouble-header { padding: 16px 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid #f0f0f0; }
+    .trouble-num { background: linear-gradient(135deg, #5a7adc, #7a6adc); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; flex-shrink: 0; }
+    .trouble-title { font-size: 18px; font-weight: bold; color: #2a4a6a; }
+    .trouble-content { padding: 20px; }
+    
+    /* 想定原因 */
+    .cause-box { background: #f8f9fc; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
+    .cause-label { font-size: 12px; color: #8a9aaa; margin-bottom: 4px; }
+    .cause-text { color: #5a6a7a; font-size: 14px; }
+    
+    /* 手順リスト */
+    .step-list { list-style: none; padding: 0; margin: 0; }
+    .step-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+    .step-item:last-child { border-bottom: none; }
+    .step-num { background: #e8f0fc; color: #5a7adc; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; flex-shrink: 0; }
+    .step-text { flex: 1; color: #3a4a5a; }
+    .step-text strong { color: #5a7adc; }
+    
+    /* 接続手順ボックス */
+    .connect-box { background: #f8fbff; border: 1px solid #d8e8f8; border-radius: 10px; padding: 16px; margin: 16px 0; }
+    .connect-title { font-weight: bold; color: #3a5a8a; margin-bottom: 12px; font-size: 14px; }
+    
+    /* 注意ボックス */
+    .note-box { background: #fff8f0; border: 1px solid #f0d8c0; border-radius: 10px; padding: 12px 16px; margin-top: 12px; font-size: 14px; color: #8a6a4a; }
+    
+    /* 警告ボックス */
+    .warning-box { background: #fff0f0; border: 1px solid #f0c0c0; border-radius: 10px; padding: 12px 16px; margin-top: 12px; }
+    .warning-text { color: #9a4a4a; font-size: 14px; font-weight: bold; }
+    
+    /* ログイン情報ボックス */
+    .login-box { background: linear-gradient(135deg, #f0f8ff, #f8f0ff); border: 2px solid #c8d8f8; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    .login-title { font-weight: bold; color: #4a5a8a; margin-bottom: 12px; font-size: 14px; }
+    .login-info { display: flex; flex-wrap: wrap; gap: 16px; }
+    .login-item { background: #fff; padding: 8px 14px; border-radius: 8px; }
+    .login-label { font-size: 12px; color: #8a9aaa; }
+    .login-value { font-family: monospace; font-size: 15px; color: #3a4a6a; font-weight: bold; }
+    .login-note { font-size: 13px; color: #6a7a8a; margin-top: 10px; }
+    
+    /* 緊急セクション */
+    .emergency-section { background: linear-gradient(135deg, #fff0f0, #fff8f0); border: 2px solid #f0c0a0; border-radius: 16px; margin: 20px 0; padding: 20px; }
+    .emergency-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .emergency-icon { font-size: 24px; }
+    .emergency-title { font-size: 18px; font-weight: bold; color: #9a5a4a; }
+    .emergency-list { list-style: none; padding: 0; margin: 0; }
+    .emergency-list li { padding: 10px 0; border-bottom: 1px solid rgba(240,192,160,0.3); display: flex; align-items: flex-start; gap: 10px; }
+    .emergency-list li:last-child { border-bottom: none; }
+    .emergency-bullet { color: #c87a5a; font-weight: bold; }
+    .emergency-text { color: #6a4a3a; }
+    
+    footer { margin-top: 24px; color: #999; font-size: 12px; text-align: center; padding: 16px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-icon">🔥</div>
+    <h1>Airレジ トラブル対応マニュアル</h1>
+    <p class="header-sub">難波店｜スタッフ用</p>
+  </header>
 
+  <div class="flow-box">
+    <div class="flow-inner">
+      <div class="flow-label">迷ったらこの順番：</div>
+      <div class="flow-steps">
+        <span class="flow-step">再起動</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">再接続</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">別iPad</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">手書き</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">社員/店長へ報告</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- 現場対応の基本方針 -->
+    <div class="policy-section">
+      <div class="policy-header">
+        <span class="policy-icon">✅</span>
+        <span class="policy-title">現場対応の基本方針</span>
+      </div>
+      <ul class="policy-list">
+        <li><span class="policy-bullet">•</span><span>トラブル発生時は、まず<span class="highlight">「再起動・再接続」</span>を実施</span></li>
+        <li><span class="policy-bullet">•</span><span>お客様対応中に不具合が出たら、速やかに<span class="highlight">別のiPad対応へ切替</span></span></li>
+        <li><span class="policy-bullet">•</span><span>解消しない場合は必ず<span class="highlight">社員または店長へ報告</span></span></li>
+      </ul>
+    </div>
+
+    <!-- ① 画面が固まった -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-num">①</span>
+        <span class="trouble-title">画面が固まった（フリーズ）</span>
+      </div>
+      <div class="trouble-content">
+        <div class="cause-box">
+          <div class="cause-label">想定原因</div>
+          <div class="cause-text">アプリ or iPadのフリーズ</div>
+        </div>
+        <ol class="step-list">
+          <li class="step-item">
+            <span class="step-num">1</span>
+            <span class="step-text"><strong>ホームボタンを2回</strong> → Airレジを<strong>上にスワイプして終了</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">2</span>
+            <span class="step-text">改善しない → <strong>iPadを再起動</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">3</span>
+            <span class="step-text">再起動でもダメ → <strong>社員へ報告</strong></span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ② Wi-Fiが切れている -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-num">②</span>
+        <span class="trouble-title">Wi-Fiが切れている</span>
+      </div>
+      <div class="trouble-content">
+        <div class="cause-box">
+          <div class="cause-label">想定原因</div>
+          <div class="cause-text">回線 / ルーター接続不良</div>
+        </div>
+        <div class="connect-box">
+          <div class="connect-title">接続手順</div>
+          <ol class="step-list">
+            <li class="step-item">
+              <span class="step-num">1</span>
+              <span class="step-text">右上の<strong>Wi-Fiマーク</strong>を確認</span>
+            </li>
+            <li class="step-item">
+              <span class="step-num">2</span>
+              <span class="step-text">iPadの<strong>設定</strong> → 左メニュー<strong>Wi-Fi</strong></span>
+            </li>
+            <li class="step-item">
+              <span class="step-num">3</span>
+              <span class="step-text"><strong>Wi-FiがON</strong>か確認</span>
+            </li>
+            <li class="step-item">
+              <span class="step-num">4</span>
+              <span class="step-text">一覧から<strong>USpot_5542208</strong>を選ぶ</span>
+            </li>
+            <li class="step-item">
+              <span class="step-num">5</span>
+              <span class="step-text">パスワード：<strong>j5Rd7XNK</strong></span>
+            </li>
+            <li class="step-item">
+              <span class="step-num">6</span>
+              <span class="step-text">接続できたらAirレジへ戻り<strong>動作確認</strong></span>
+            </li>
+          </ol>
+        </div>
+        <div class="note-box">※接続後、Airレジが正常に動くか確認。</div>
+      </div>
+    </div>
+
+    <!-- ③ Bluetooth接続不良 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-num">③</span>
+        <span class="trouble-title">Bluetooth接続不良（Airペイカードリーダー）</span>
+      </div>
+      <div class="trouble-content">
+        <div class="cause-box">
+          <div class="cause-label">想定原因</div>
+          <div class="cause-text">カードリーダーとiPadのBluetoothが切れている</div>
+        </div>
+        <ol class="step-list">
+          <li class="step-item">
+            <span class="step-num">1</span>
+            <span class="step-text">iPadの<strong>設定 → Bluetooth</strong>を開き、<strong>ON</strong>を確認</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">2</span>
+            <span class="step-text">一覧から<strong>Airペイカードリーダー</strong>を探す</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">3</span>
+            <span class="step-text"><strong>未接続</strong>ならタップして接続</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">4</span>
+            <span class="step-text">接続できない → リーダー電源<strong>OFF→5秒→ON</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">5</span>
+            <span class="step-text">それでもダメ → iPadのBluetoothを<strong>OFF→ON</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">6</span>
+            <span class="step-text">最終手段 → <strong>iPad・カードリーダーを再起動</strong></span>
+          </li>
+        </ol>
+        <div class="warning-box">
+          <span class="warning-text">反応がない/改善しない場合は、別のiPadで対応へ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 決済できない -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-num">④</span>
+        <span class="trouble-title">決済できない</span>
+      </div>
+      <div class="trouble-content">
+        <div class="cause-box">
+          <div class="cause-label">よくある原因</div>
+          <div class="cause-text">AirペイカードリーダーのBluetooth不良</div>
+        </div>
+        <ol class="step-list">
+          <li class="step-item">
+            <span class="step-num">1</span>
+            <span class="step-text"><strong>設定→Bluetooth</strong> → <strong>Airペイカードリーダー</strong>を再接続</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">2</span>
+            <span class="step-text">接続できない → <strong>カードリーダー/iPadを再起動</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">3</span>
+            <span class="step-text">それでも不可 → <strong>別のiPadで対応</strong></span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ⑤ 別のiPadで対応 -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-num">⑤</span>
+        <span class="trouble-title">別のiPadで対応（最速復旧）</span>
+      </div>
+      <div class="trouble-content">
+        <div class="cause-box">
+          <div class="cause-label">想定原因</div>
+          <div class="cause-text">メイン端末の接続不良 / Airペイ側の通信トラブル</div>
+        </div>
+        <ol class="step-list">
+          <li class="step-item">
+            <span class="step-num">1</span>
+            <span class="step-text">別のiPadを用意し、<strong>Airレジ</strong>と<strong>Airペイ</strong>を開く</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">2</span>
+            <span class="step-text">カードリーダーを新しいiPadへ<strong>Bluetooth接続</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">3</span>
+            <span class="step-text">同じ店舗アカウントでログインしていれば、注文内容は自動反映される</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">4</span>
+            <span class="step-text">そのまま<strong>Airペイで決済</strong></span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">5</span>
+            <span class="step-text">レシートが出せない場合は<strong>手書き対応</strong></span>
+          </li>
+        </ol>
+        <div class="login-box">
+          <div class="login-title">店舗ログイン</div>
+          <div class="login-info">
+            <div class="login-item">
+              <div class="login-label">ID</div>
+              <div class="login-value">porc</div>
+            </div>
+            <div class="login-item">
+              <div class="login-label">PW</div>
+              <div class="login-value">1221porc@</div>
+            </div>
+          </div>
+          <div class="login-note">※同じ店舗アカウントでログインすること</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ 印刷できない -->
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <span class="trouble-num">⑥</span>
+        <span class="trouble-title">印刷できない（レシート/領収書）</span>
+      </div>
+      <div class="trouble-content">
+        <div class="cause-box">
+          <div class="cause-label">想定原因</div>
+          <div class="cause-text">Wi-Fiまたはプリンター電源不良</div>
+        </div>
+        <ol class="step-list">
+          <li class="step-item">
+            <span class="step-num">1</span>
+            <span class="step-text">プリンターの<strong>コンセント</strong>が緩んでいないか確認</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">2</span>
+            <span class="step-text">Airレジと<strong>同じWi-Fi</strong>で接続されているか確認</span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">3</span>
+            <span class="step-text">解消しない → <strong>手書きの領収書</strong>で対応</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 緊急セクション -->
+    <div class="emergency-section">
+      <div class="emergency-header">
+        <span class="emergency-icon">🆘</span>
+        <span class="emergency-title">解決しない場合（無理に触らない）</span>
+      </div>
+      <ul class="emergency-list">
+        <li><span class="emergency-bullet">•</span><span class="emergency-text"><strong>手書きで会計記録</strong>を残す</span></li>
+        <li><span class="emergency-bullet">•</span><span class="emergency-text">状況を<strong>社員 / 店長へ報告</strong></span></li>
+        <li><span class="emergency-bullet">•</span><span class="emergency-text"><strong>無理に操作を続けない</strong></span></li>
+      </ul>
+    </div>
+
+    <footer>
+      焼とりporc 難波店｜Airレジ トラブル対応マニュアル
+    </footer>
+  </main>
+</body>
+</html>
