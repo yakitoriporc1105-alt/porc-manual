@@ -1,1 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入社初日ルール</title>
+    <meta property="og:title" content="入社初日ルール">
+    <meta property="og:description" content="必ず読む・必ず守る。守れない人は現場に立てません。">
+    <meta property="og:type" content="website">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "游明朝", "Yu Mincho", "Hiragino Mincho ProN", "HG明朝E", serif;
+            background: #fffef8;
+            color: #1a1a1a;
+            line-height: 2;
+            min-height: 100vh;
+            padding: 30px 20px;
+            font-size: 18px;
+        }
+        
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 50px 40px;
+            border: 1px solid #333;
+        }
+        
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #1a1a1a;
+            margin-bottom: 40px;
+        }
+        
+        header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        
+        .notice {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .notice p {
+            margin: 5px 0;
+        }
+        
+        .rule-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .rule-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .rule-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #1a1a1a;
+        }
+        
+        .rule-subtitle {
+            font-size: 16px;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+        
+        .importance {
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        .rule-content {
+            padding-left: 20px;
+        }
+        
+        .rule-content ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        
+        .rule-content li {
+            margin-bottom: 8px;
+            text-indent: -1em;
+            padding-left: 1em;
+        }
+        
+        .rule-content li::before {
+            content: "・";
+        }
+        
+        .ng-section {
+            margin: 20px 0;
+            padding: 15px 20px;
+            border: 1px solid #1a1a1a;
+            background: #fafafa;
+        }
+        
+        .ng-section .ng-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .ng-section ul {
+            list-style: none;
+        }
+        
+        .ng-section li::before {
+            content: "×　";
+            font-weight: bold;
+        }
+        
+        .point {
+            margin-top: 15px;
+            font-weight: bold;
+            padding: 10px 15px;
+            background: #f5f5f5;
+            border-left: 3px solid #1a1a1a;
+        }
+        
+        .sub-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #1a1a1a;
+        }
+        
+        .sub-section h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        .critical-section {
+            border: 2px solid #1a1a1a;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .critical-section .rule-header {
+            border-left: 6px solid #1a1a1a;
+        }
+        
+        .critical-warning {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #1a1a1a;
+            background: #f9f9f9;
+        }
+        
+        .footer-section {
+            margin-top: 50px;
+            padding: 30px;
+            border: 2px solid #1a1a1a;
+            text-align: center;
+        }
+        
+        .footer-section h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a1a1a;
+            display: inline-block;
+        }
+        
+        .footer-section p {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .footer-section .highlight {
+            font-weight: bold;
+            font-size: 22px;
+        }
+        
+        .arrow {
+            margin-left: 20px;
+        }
+        
+        .arrow::before {
+            content: "→　";
+        }
+        
+        /* 署名欄 */
+        .signature-section {
+            margin-top: 40px;
+            padding: 30px;
+            border: 2px solid #1a1a1a;
+            background: #fff;
+        }
+        
+        .signature-section h2 {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        
+        .signature-row {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .signature-field {
+            flex: 1;
+        }
+        
+        .signature-field label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .input-line {
+            border-bottom: 1px solid #1a1a1a;
+            height: 40px;
+        }
+        
+        .count-options {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .count-circle {
+            display: inline-block;
+            font-size: 20px;
+            padding: 15px 25px;
+            border: 2px solid #1a1a1a;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .signature-row {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .count-options {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
+        
+        /* チェックリスト */
+        .checklist {
+            margin-top: 60px;
+            padding: 30px;
+            border: 2px solid #1a1a1a;
+            background: #fafafa;
+        }
+        
+        .checklist h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+        
+        .check-item:last-child {
+            border-bottom: none;
+        }
+        
+        .check-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        .check-item label {
+            font-size: 18px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+            
+            header h1 {
+                font-size: 22px;
+            }
+            
+            .rule-header {
+                font-size: 18px;
+            }
+            
+            .footer-section p {
+                font-size: 18px;
+            }
+            
+            .footer-section .highlight {
+                font-size: 20px;
+            }
+            
+            .check-item label {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>入社初日ルール</h1>
+            <div class="notice">
+                <p>※必ず読むこと・必ず守ること</p>
+                <p>※守れない人は現場に立てません</p>
+            </div>
+        </header>
+
+        <section class="rule-section">
+            <h3 class="rule-header">① 遅刻禁止</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>5分前行動を徹底する</li>
+                    <li>遅刻＝信用ゼロ</li>
+                    <li>理由は関係ない</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">② 返事・聞く姿勢</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>呼ばれたら必ず「はい」と返事をする</li>
+                    <li>先輩の話は正しい姿勢で聞く</li>
+                    <li>体を向ける・目を見る</li>
+                </ul>
+                <div class="ng-section">
+                    <p class="ng-title">【禁止事項】</p>
+                    <ul>
+                        <li>もたれる</li>
+                        <li>腕を組む</li>
+                        <li>だらけた姿勢</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">③ 作業台・立ち姿</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>作業台にもたれない</li>
+                    <li>手をついて寄りかからない</li>
+                    <li>腕を組まない</li>
+                </ul>
+                <p class="point">【理由】不衛生・だらしない・プロに見えない</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">④ お客様の前での立ち方</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>手は前、または自然に下げる</li>
+                    <li>ポケットに手を入れない</li>
+                    <li>腰に手を当てない</li>
+                </ul>
+                <p class="point">【重要】立ち姿＝店の印象</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑤ 定位置管理・整理整頓</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>物は必ず決まった場所に戻す</li>
+                    <li>勝手に配置を変えない</li>
+                    <li>使ったらすぐ片付ける</li>
+                </ul>
+                <p class="point">【注意】物が無くなる＝全員に迷惑</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑥ 手洗い・衛生</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>何回でも手を洗う</li>
+                    <li>トイレ後・生肉後・作業切替前は必須</li>
+                </ul>
+                <p class="point">【警告】食中毒は一瞬で起きる</p>
+            </div>
+        </section>
+
+        <section class="critical-section">
+            <h3 class="rule-header">⑦ 生肉・鶏肉の扱い<span class="importance">【最重要】</span></h3>
+            <div class="rule-content">
+                <p class="critical-warning">扱いを間違える＝即 食中毒</p>
+                
+                <div class="sub-section">
+                    <h4>まな板・包丁について</h4>
+                    <ul>
+                        <li>生肉用まな板を必ず使う</li>
+                        <li>使う前に<span class="arrow">まな板・包丁をアルコール消毒</span></li>
+                        <li>使い終わったら<span class="arrow">すぐ洗う（放置しない）</span></li>
+                    </ul>
+                </div>
+                
+                <div class="sub-section">
+                    <h4>洗浄・消毒について</h4>
+                    <ul>
+                        <li>仕込み後・営業後は<span class="arrow">必ずハイターをかける</span></li>
+                        <li>ハイター前に<span class="arrow">洗剤＋ブラシでしっかりこする</span></li>
+                        <li>毎日<span class="arrow">真っ白な状態に仕上げる</span></li>
+                    </ul>
+                    <div class="ng-section">
+                        <p class="ng-title">【絶対禁止】</p>
+                        <ul>
+                            <li>洗わずにハイターだけ</li>
+                            <li>汚れが残ったまま</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="sub-section">
+                    <h4>二次感染防止について</h4>
+                    <ul>
+                        <li>生肉を触った手で他を触らない</li>
+                        <li>特に<span class="arrow">冷蔵庫の取手・引き出し・調味料は絶対に触らない</span></li>
+                        <li>生肉後は<span class="arrow">必ず手洗いしてから次の作業</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑧ 仕込み・日付管理</h3>
+            <div class="rule-content">
+                <ul>
+                    <li>仕込んだら必ず日付を書く</li>
+                    <li>日付不明は使わない</li>
+                </ul>
+                <p class="point">【厳守】「もったいない」は理由にならない</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑨ 分からない事は即聞く<span class="rule-subtitle">― 自己判断禁止</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>少しでも不安なら必ず確認</li>
+                    <li>勝手な判断で動かない</li>
+                    <li>「たぶん」「前の店では」は使わない</li>
+                </ul>
+                <p class="point">【重要】ミスは後処理に何倍も時間がかかる</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑩ 指示された事はメモする<span class="rule-subtitle">― 一回で覚えられないのが普通</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>メモを取らない＝覚える気がない</li>
+                    <li>同じ事を何度も聞かない</li>
+                    <li>教える側の時間は有限</li>
+                </ul>
+                <p class="point">【心得】メモする人＝成長が早い</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑪ 作業スピードより「正確さ」<span class="rule-subtitle">― 最初は遅くていい、雑はNG</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>急いでミスする方が迷惑</li>
+                    <li>慣れるまでは「確認」が最優先</li>
+                    <li>正確にできてからスピードを上げる</li>
+                </ul>
+                <p class="point">【注意】雑な人ほど覚えるのが遅い</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑫ 私語・スマホルール<span class="rule-subtitle">― 仕事中は仕事</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>私語は最低限</li>
+                    <li>スマホは仕事の業務で使う時と緊急時のみ</li>
+                    <li>見られている意識を持つ</li>
+                </ul>
+                <p class="point">【注意】お客様は意外と全部見てます</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑬ 身だしなみ・清潔感<span class="rule-subtitle">― 清潔感は技術より重要</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>髪・爪・服装は常に清潔</li>
+                    <li>爪は短く、マニキュア・装飾NG</li>
+                    <li>匂い（タバコ・香水）注意</li>
+                </ul>
+                <p class="point">【厳守】不快感を与えた時点でアウト</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑭ ミスした時のルール<span class="rule-subtitle">― 隠さない・ごまかさない</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>ミスしたらすぐ報告</li>
+                    <li>黙って進めるのが一番危険</li>
+                    <li>怒られるより事故の方が問題</li>
+                </ul>
+                <p class="point">【約束】正直な人は守られます</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑮ 「やる事が無い時」の行動<span class="rule-subtitle">― 止まらない</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>勝手に突っ立っていない</li>
+                    <li>掃除・補充・確認</li>
+                    <li>分からなければ聞く</li>
+                </ul>
+                <p class="point">【心得】仕事は常にあります</p>
+            </div>
+        </section>
+
+        <section class="rule-section">
+            <h3 class="rule-header">⑯ 店の基準が"正解"<span class="rule-subtitle">― 過去の経験は一旦捨てる</span></h3>
+            <div class="rule-content">
+                <ul>
+                    <li>前の店のやり方は持ち込まない</li>
+                    <li>ここでは「この店の基準」が正解</li>
+                    <li>疑問は後で聞けばいい</li>
+                </ul>
+                <p class="point">【重要】合わせられない人は続きません</p>
+            </div>
+        </section>
+
+        <section class="footer-section">
+            <h3>最後に</h3>
+            <p>この店では</p>
+            <p class="highlight">「前の店では」</p>
+            <p class="highlight">「たぶん」</p>
+            <p class="highlight">「知らなかった」</p>
+            <p>は通用しません。</p>
+            <br>
+            <p>分からない時は</p>
+            <p class="highlight">必ず聞く</p>
+            <p class="highlight">勝手に決めない</p>
+        </section>
+
+        <section class="checklist">
+            <h2>確認チェックリスト</h2>
+            <div class="check-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">① 遅刻禁止（5分前行動）を理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">② 返事・聞く姿勢のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">③ 作業台・立ち姿のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">④ お客様の前での立ち方を理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">⑤ 定位置管理・整理整頓のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">⑥ 手洗い・衛生のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check7">
+                <label for="check7">⑦ 生肉・鶏肉の扱い【最重要】を理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check8">
+                <label for="check8">⑧ 仕込み・日付管理のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check9">
+                <label for="check9">⑨ 分からない事は即聞くことを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check10">
+                <label for="check10">⑩ 指示された事はメモすることを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check11">
+                <label for="check11">⑪ 作業スピードより「正確さ」を理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check12">
+                <label for="check12">⑫ 私語・スマホルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check13">
+                <label for="check13">⑬ 身だしなみ・清潔感のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check14">
+                <label for="check14">⑭ ミスした時のルールを理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check15">
+                <label for="check15">⑮ 「やる事が無い時」の行動を理解した</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="check16">
+                <label for="check16">⑯ 店の基準が"正解"であることを理解した</label>
+            </div>
+        </section>
+
+        <section class="signature-section">
+            <h2>確認欄</h2>
+            <div class="signature-row">
+                <div class="signature-field">
+                    <label>読んだ回数（○をつける）</label>
+                    <div class="count-options">
+                        <span class="count-circle">1回目</span>
+                        <span class="count-circle">2回目</span>
+                        <span class="count-circle">3回目</span>
+                    </div>
+                </div>
+            </div>
+            <div class="signature-row">
+                <div class="signature-field">
+                    <label>日付</label>
+                    <div class="input-line"></div>
+                </div>
+                <div class="signature-field">
+                    <label>署名</label>
+                    <div class="input-line"></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
 
