@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ハンディーのラストオーダー設定方法【重要】</title>
+  <style>
+    body{
+      margin:0;
+      padding:24px;
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+      line-height:1.8;
+      background:#f7f7f7;
+      color:#222;
+    }
+    .wrap{
+      max-width:900px;
+      margin:0 auto;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 6px 16px rgba(0,0,0,.06);
+      padding:28px;
+    }
+    h1{
+      margin:0 0 12px 0;
+      font-size:24px;
+      border-left:6px solid #d32f2f;
+      padding-left:12px;
+    }
+    .lead{
+      margin:12px 0 18px 0;
+      font-size:15px;
+    }
+    .points{
+      margin:10px 0 18px 0;
+      padding:14px 16px;
+      background:#fafafa;
+      border:1px solid #eee;
+      border-radius:10px;
+    }
+    .points ul{ margin:8px 0 0 20px; }
+    h2{
+      margin:26px 0 10px 0;
+      font-size:18px;
+      border-bottom:2px solid #eee;
+      padding-bottom:6px;
+    }
+    ol{
+      margin:12px 0 0 20px;
+      padding:0;
+    }
+    li{ margin:10px 0; }
+    .step{
+      font-weight:700;
+    }
+    .badge{
+      display:inline-block;
+      font-weight:700;
+      background:#111;
+      color:#fff;
+      border-radius:999px;
+      padding:2px 10px;
+      font-size:12px;
+      margin-right:8px;
+    }
+    .warn{
+      margin-top:22px;
+      padding:16px;
+      background:#fff3f3;
+      border-left:6px solid #d32f2f;
+      border-radius:10px;
+    }
+    .warn h3{
+      margin:0 0 8px 0;
+      font-size:16px;
+    }
+    .warn ul{ margin:8px 0 0 20px; }
+    .kome{
+      margin-top:18px;
+      font-size:13px;
+      color:#555;
+    }
+    .strong{
+      font-weight:800;
+      color:#d32f2f;
+    }
+    .hr{
+      height:1px;
+      background:#eee;
+      margin:18px 0;
+      border:0;
+    }
+  </style>
+</head>
 
+<body>
+  <div class="wrap">
+    <h1>🕒 ハンディーのラストオーダー設定方法【重要】</h1>
+
+    <p class="lead">
+      各店舗、特に週末を中心に忙しい日が増えています。<br />
+      ラストオーダーの設定忘れは、以下の原因になります。
+    </p>
+
+    <div class="points">
+      <ul>
+        <li>👉 席の回転遅れ</li>
+        <li>👉 次のお客様をお待たせする</li>
+        <li>👉 現場がさらにバタつく</li>
+      </ul>
+    </div>
+
+    <p class="lead">
+      そのため、以下の手順を<strong>必ず確認・実行</strong>してください。
+    </p>
+
+    <hr class="hr" />
+
+    <h2>【設定手順】</h2>
+    <ol>
+      <li>
+        <span class="badge">①</span>
+        設定したいテーブルを<strong>長押し</strong><br />
+        → 新たに出てくる画面中央の<strong>「放題・割引」</strong>を選択
+      </li>
+      <li>
+        <span class="badge">②</span>
+        放題の一番上にある<strong>「L.O.予定時刻」</strong>をタップ<br />
+        → 設定したい時間に調整
+      </li>
+      <li>
+        <span class="badge">③</span>
+        内容を確認したら、画面一番下の<strong>「確定する」</strong>をタップ
+      </li>
+    </ol>
+
+    <hr class="hr" />
+
+    <h2>【ラストオーダーを取りに行ったが注文が無い場合】</h2>
+    <ol>
+      <li>
+        <span class="badge">④</span>
+        ①と同じ手順で<strong>「放題・割引」</strong>を開く<br />
+        👉 <strong>「L.O.済み」</strong>にチェックを入れる
+      </li>
+    </ol>
+
+    <div class="warn">
+      <h3>⚠️ 重要な注意点（必読）</h3>
+      <ul>
+        <li>
+          設定した時間を過ぎると、<span class="strong">お客様のモバイルオーダーから注文ができなくなります</span>
+        </li>
+        <li>その前に<span class="strong">必ずラストオーダーを取りに行く</span>こと</li>
+        <li><span class="strong">「忙しいから後で」</span>はNGです</li>
+      </ul>
+    </div>
+
+    <p class="kome">※運用の質＝回転率と満足度に直結します。必ず徹底してください。</p>
+  </div>
+</body>
+</html>
